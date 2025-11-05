@@ -77,10 +77,16 @@ async function startServer() {
         await connectDB();
         console.log("데이터베이스 연결 성공");
 
-        // 데이터베이스 초기화 시도
+        // 데이터베이스 초기화 시도 (connection 닫지 않음)
         try {
-            const { initializeDatabase } = require("./database/init");
-            await initializeDatabase();
+            const fs = require("fs");
+            const path = require("path");
+            const { query } = require("./database/connection");
+            
+            const schemaPath = path.join(__dirname, "database/schema.sql");
+            const schema = fs.readFileSync(schemaPath, "utf8");
+            await query(schema);
+            
             console.log("데이터베이스 테이블 초기화 완료");
         } catch (initError) {
             console.warn(
