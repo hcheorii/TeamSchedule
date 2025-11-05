@@ -4,37 +4,37 @@ Node.js, Express, PostgreSQL을 사용한 팀 스케줄러 REST API입니다.
 
 ## 주요 기능
 
--   ✅ 태스크 생성, 조회, 수정, 삭제
--   📊 상태 및 우선순위 기반 필터링
--   📅 날짜 범위 조회 (캘린더 뷰)
--   📈 대시보드 통계 정보
--   🔄 Kanban 보드 지원 (상태 변경)
+- ✅ 태스크 생성, 조회, 수정, 삭제
+- 📊 상태 및 우선순위 기반 필터링
+- 📅 날짜 범위 조회 (캘린더 뷰)
+- 📈 대시보드 통계 정보
+- 🔄 Kanban 보드 지원 (상태 변경)
 
 ## 기술 스택
 
--   **Backend**: Node.js, Express.js
--   **Database**: PostgreSQL
--   **Deployment**: Railway
+- **Backend**: Node.js, Express.js
+- **Database**: PostgreSQL
+- **Deployment**: Railway
 
 ## API 엔드포인트
 
 ### Tasks API
 
-| Method | Endpoint                   | 설명                           |
-| ------ | -------------------------- | ------------------------------ |
-| GET    | `/api/tasks`               | 모든 태스크 조회 (필터링 가능) |
-| GET    | `/api/tasks/:id`           | 특정 태스크 상세 조회          |
-| POST   | `/api/tasks`               | 새 태스크 생성                 |
-| PUT    | `/api/tasks/:id`           | 태스크 전체 수정               |
-| PATCH  | `/api/tasks/:id/status`    | 태스크 상태만 변경             |
-| DELETE | `/api/tasks/:id`           | 태스크 삭제                    |
-| GET    | `/api/tasks/by-date-range` | 날짜 범위로 태스크 조회        |
+| Method | Endpoint | 설명 |
+|--------|----------|------|
+| GET | `/api/tasks` | 모든 태스크 조회 (필터링 가능) |
+| GET | `/api/tasks/:id` | 특정 태스크 상세 조회 |
+| POST | `/api/tasks` | 새 태스크 생성 |
+| PUT | `/api/tasks/:id` | 태스크 전체 수정 |
+| PATCH | `/api/tasks/:id/status` | 태스크 상태만 변경 |
+| DELETE | `/api/tasks/:id` | 태스크 삭제 |
+| GET | `/api/tasks/by-date-range` | 날짜 범위로 태스크 조회 |
 
 ### Dashboard API
 
-| Method | Endpoint               | 설명               |
-| ------ | ---------------------- | ------------------ |
-| GET    | `/api/dashboard/stats` | 대시보드 통계 정보 |
+| Method | Endpoint | 설명 |
+|--------|----------|------|
+| GET | `/api/dashboard/stats` | 대시보드 통계 정보 |
 
 ## 데이터 모델
 
@@ -42,14 +42,14 @@ Node.js, Express, PostgreSQL을 사용한 팀 스케줄러 REST API입니다.
 
 ```json
 {
-    "id": "UUID",
-    "title": "태스크 제목",
-    "description": "태스크 설명",
-    "status": "backlog | todo | in-progress | done",
-    "priority": "low | medium | high",
-    "assignee": "담당자 이름",
-    "dueDate": "2025-11-10",
-    "createdAt": "2025-11-05"
+  "id": "UUID",
+  "title": "태스크 제목",
+  "description": "태스크 설명",
+  "status": "backlog | todo | in-progress | done",
+  "priority": "low | medium | high",
+  "assignee": "담당자 이름",
+  "dueDate": "2025-11-10",
+  "createdAt": "2025-11-05"
 }
 ```
 
@@ -120,11 +120,11 @@ npm run dev
 
 PostgreSQL 서비스 > "Variables" 탭에서 다음 정보 확인:
 
--   `PGHOST` (Private Networking 주소)
--   `PGPORT`
--   `PGUSER`
--   `PGPASSWORD`
--   `PGDATABASE`
+- `PGHOST` (Private Networking 주소)
+- `PGPORT`
+- `PGUSER`
+- `PGPASSWORD`
+- `PGDATABASE`
 
 ### 4. 백엔드 서버 환경 변수 설정
 
@@ -142,13 +142,11 @@ NODE_ENV=production
 ### 5. 데이터베이스 테이블 생성
 
 Railway PostgreSQL 서비스에서:
-
 1. "Data" 탭 클릭
 2. "Query" 버튼 클릭
 3. `src/database/schema.sql` 내용을 복사하여 실행
 
 또는 배포 후 Railway 콘솔에서:
-
 ```bash
 npm run init-db
 ```
@@ -238,22 +236,22 @@ curl https://your-app.up.railway.app/api/dashboard/stats
 
 ```json
 {
-    "error": {
-        "code": "ERROR_CODE",
-        "message": "사용자에게 표시할 메시지",
-        "details": "개발 환경에서만 표시"
-    }
+  "error": {
+    "code": "ERROR_CODE",
+    "message": "사용자에게 표시할 메시지",
+    "details": "개발 환경에서만 표시"
+  }
 }
 ```
 
 ## HTTP 상태 코드
 
--   `200` - 성공
--   `201` - 생성 성공 (POST)
--   `400` - 잘못된 요청
--   `404` - 리소스를 찾을 수 없음
--   `500` - 서버 내부 오류
--   `503` - 데이터베이스 서비스 사용 불가
+- `200` - 성공
+- `201` - 생성 성공 (POST)
+- `400` - 잘못된 요청
+- `404` - 리소스를 찾을 수 없음
+- `500` - 서버 내부 오류
+- `503` - 데이터베이스 서비스 사용 불가
 
 ## 문제 해결
 
